@@ -940,11 +940,23 @@
         /**
          * exposes _handleKey publicly so it can be overwritten by extensions
          */
-        handleKey: _handleKey
+        handleKey: _handleKey,
+
+        /**
+         * Allows use of a Custom Map of Keycodes to Special buttons.
+         */
+        setSpecialKeycodeMap: function(newMap){
+            _MAP = newMap;
+            return this;
+        }
     };
 
     // expose mousetrap to the global object
     window.Mousetrap = Mousetrap;
+
+    if(typeof module == 'object' && module.exports) {
+        module.exports = Mousetrap;
+    }
 
     // expose mousetrap as an AMD module
     if (typeof define === 'function' && define.amd) {
